@@ -105,12 +105,12 @@ Ostatnie 2 poziomy odbywają się na księżycu o obniżonym przyspieszeniu graw
 # Specyfikacja wewnętrzna
 Program został zrealizowany zgodnie z paradygmatem strukturalnym. W programie rozdzielono interfejs (komunikację z użytkownikiem) od logiki aplikacji (symulacji fizyki).
 
-# Diagram hierarchii klas
+## Diagram hierarchii klas
 Dziedziczenie oznaczone jest białą strzałką a powiązania zieloną.
 
 ![classes](https://user-images.githubusercontent.com/49723341/132682397-1be03e40-ee66-4148-9421-2397a4beb087.png)
 
-# Klasy
+## Klasy
 1. `Screen`  
 Odpowiada za stworzenie okna, w którym wyświetlany będzie program, za komunikację z użytkownikiem, operacje na plikach i koordynacje stanów gry (poziom, wygrana przegrana, menu map).
 Zawiera w sobie obiekty klasy Button do stworzenia przycisków i wskaźnik na obiekt klasy Level.
@@ -147,9 +147,9 @@ Dziedziczy z klasy SimulatedObject.
 
 9. `Throwable`  
 Do bazy, jaką stanowi klasa SimulatedObject klasa Throwable wprowadza swoje metody i pola, które umożliwią celowanie i wystrzelenie obiektu oraz sprawdzanie, z czy obiekt wciąż się porusza. Zawiera 3 stany:
-- Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
-- Celujący (Aiming) - wyświetlana jest trajektoria lotu
-- Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
+   - Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
+   - Celujący (Aiming) - wyświetlana jest trajektoria lotu
+   - Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
 Stan obiektu (użyty) i stwierdzenie nieporuszania się umożliwia poziomowi podjęcie decyzji o przegranej.
 Dziedziczy z klasy SimulatedObject.
 
@@ -166,10 +166,10 @@ W konstruktorze obiektu klasy Cluster ustalony zostaje typ obiektu, jego lokacja
 Tworzy maksymalnie 3 bomby od obiektu typu Bombarding. Wystrzelenie bomby jest kontrolowane przez użytkownika lewym przyciskiem myszy w trakcie gdy obiekt typu Bombarding został użyty, ale jeszcze nie skończył się poruszać. Bomba jest wystrzeliwana z prędkością liniową skierowaną w dół.
 Dziedziczy z klasy Throwable.
 
-# Szczegółowy opis klas i metod
+## Szczegółowy opis klas i metod
 Szczegółowy opis klas i metod zawarty w pliku "Dokumentacja - AngryBlocks.pdf".
 
-# Istotne struktury danych i algorytmy
+## Istotne struktury danych i algorytmy
 Istotnymi strukturami danych programu są:
 
 1. Statyczna tablica trójwymiarowa [5x22x41] znaków klasy Screen - wczytana z pliku tekstowego lub binarnego, określa design poziomów - pierwszy wymiar oznacza numer poziomu, drugi wysokość a trzeci szerokość poziomu. Wczytanie designu z pliku i zapisanie w tej tablicy umożliwia tworzenie poziomu bez konieczności ponownego korzystania z dysku - plik jest otwierany tylko na początku programu.
@@ -183,14 +183,14 @@ zniszczeniu obiektów, które mają HP mniejsze lub równe 0
 wykrycia obecności lub braku obiektu typu Enemy
 	Algorytm ma złożoność obliczeniową O(n).
 
-# Wykorzystane techniki obiektowe
+## Wykorzystane techniki obiektowe
 W projekcie wykorzystane zostało dziedziczenie z klasy abstrakcyjnej SimulatedObject z czysto wirtualną funkcją createObject umożliwiającą wykorzystanie polimorfizmu.
 W przestrzeni nazw Converter zostało wykorzystane programowanie generyczne (wzorce), aby funkcje mogły przyjmować różne typy danych. 
 W używanych przeze mnie klasach użyłem enkapsulacji szczegółów implementacji np. łączenia biblioteki graficznej z fizyczną w klasie SimulatedObject.
 Do przechowywania i przeszukiwania symulowanych obiektów poziomu wykorzystane są kontenery i iteratory STL.
 W programie został użyty mechanizm wyjątków.
 
-# Ogólny schemat działania programu
+## Ogólny schemat działania programu
 W funkcji głównej tworzona jest instancja main_screen klasy Screen. Konstruktor tego obiektu wczytuje tekstury, czcionkę, napisy i wyskakujące okna. Następnie ładowane są punkty z pliku binarnego metodą loadScore i design poziomów z pliku binarnego lub tekstowego (zależnie który zostanie znaleziony) z użyciem metody loadLevelsLayout. Jeżeli nie uda się wczytać punktów z pliku zostanie wypisany komunikat "Unable to open text file" lub "Unable to open binary file".
 Następnie tworzone jest okno programu w metodzie createWindow. Znajduje się tam pętla, która trwa, dopóki okno jest otwarte. Zawiera ona w sobie instrukcje warunkowe sprawdzające aktualny stan gry - menu map lub poziom.
 Gdy stanem gry jest menu map, renderowane jest okno, w którym są przyciski do załadowania poziomu. Po kliknięciu przycisku odpowiadającemu danemu poziomowi tworzony jest obiekt klasy Level i wczytywany jego design i highscore na podstawie numeru klikniętego przycisku a wskaźnik na wczytany poziom znajduje się w zmiennej active_level.
