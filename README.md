@@ -105,6 +105,11 @@ Ostatnie 2 poziomy odbywają się na księżycu o obniżonym przyspieszeniu graw
 # Specyfikacja wewnętrzna
 Program został zrealizowany zgodnie z paradygmatem strukturalnym. W programie rozdzielono interfejs (komunikację z użytkownikiem) od logiki aplikacji (symulacji fizyki).
 
+# Diagram hierarchii klas
+Dziedziczenie oznaczone jest białą strzałką a powiązania zieloną.
+
+![classes](https://user-images.githubusercontent.com/49723341/132682397-1be03e40-ee66-4148-9421-2397a4beb087.png)
+
 # Klasy
 1. Screen
 Odpowiada za stworzenie okna, w którym wyświetlany będzie program, za komunikację z użytkownikiem, operacje na plikach i koordynacje stanów gry (poziom, wygrana przegrana, menu map).
@@ -163,11 +168,6 @@ Dziedziczy z klasy Throwable.
 
 # Szczegółowy opis klas i metod
 Szczegółowy opis klas i metod zawarty w pliku "Dokumentacja - AngryBlocks.pdf".
-
-# Diagram hierarchii klas
-Dziedziczenie oznaczone jest białą strzałką a powiązania zieloną.
-
-![classes](https://user-images.githubusercontent.com/49723341/132682397-1be03e40-ee66-4148-9421-2397a4beb087.png)
 
 # Istotne struktury danych i algorytmy
 Istotnymi strukturami danych programu są:
