@@ -13,15 +13,15 @@ W programie odbywa się symulacja fizycznego świata z grawitacją, obiektami i 
 W tym programie za graficzną reprezentację odpowiedzialna jest biblioteka SFML. Problemem połączenia obu bibliotek jest różnica w używanych przez nie jednostek. 
 Do wyrażenia miary odległości SFML używa pikseli a Box2D metrów. Do wyrażenia miary kąta SFML używa stopni a Box2D radianów. Połączenie obu bibliotek, żeby synchronicznie ze sobą działały, wymaga zastosowania konwersji jednostek. Funkcje odpowiedzialne za tą konwersję znajdują się w przestrzeni nazw Converter. Sam obiekt, który jest widoczny dla użytkownika (SFML) i którego fizyka jest symulowana (Box2D), jest realizowany przez klasę SimulatedObject.
 Wygrana oznacza, że na mapie nie znajduje się żaden obiekt o rodzaju przeciwnik. Przegrana oznacza, że każdy z obiektów do rzucania został użyty i każdy z nich skończył się poruszać.
-Rzucanie odbywa się poprzez obliczenie różnicy koordynatu początkowego obiektu do rzucania a koordynatu myszki w momencie puszczenia lewego przycisku myszy. W tym momencie następuje impulsywne nałożenie prędkości liniowej w centrum masy obiektu.
+Rzucanie odbywa się poprzez obliczenie różnicy koordynatu początkowego obiektu do rzucania a koordynatu myszki w momencie puszczenia lewego przycisku myszy. W tym momencie następuje impulsywne nałożenie prędkości liniowej w centrum masy obiektu.  
 Trajektoria lotu w momencie trzymania lewego przycisku myszy realizowana jest wzorem:
 
 ![rownanie](https://user-images.githubusercontent.com/49723341/132680418-6f8e6e7d-4a5c-4c75-b31d-3e5dd1c1dbcf.png)
 
-Gdzie:
-p(n) - pozycja w skoku czasowym n
-p0 - pozycja początkowa (zerowy skok czasowy)
-v - początkowa prędkość na skok czasowy
+Gdzie:  
+p(n) - pozycja w skoku czasowym n  
+p0 - pozycja początkowa (zerowy skok czasowy)  
+v - początkowa prędkość na skok czasowy  
 a - przyspieszenie ziemskie na skok czasu
 
 Poziom jest tworzony, interpretując plik tekstowy lub binarny i zapisując projekt poziomu w przeznaczonej na to trójwymiarowej, statycznej tablicy znaków. Interpretacja polega na liniowym przeszukiwaniu pliku aż do jego końca i zapisie odczytanych znaków, jeżeli wczytana linia zawiera odpowiednią ilość znaków.
@@ -29,21 +29,21 @@ Przykład projektu poziomu w pliku tekstowym:
 
 ![levels](https://user-images.githubusercontent.com/49723341/132681105-945196c4-4a1f-4fff-ab11-c123fcbb6d79.png)
 
-Gdzie:
-w - przeszkoda drewniana
-s - przeszkoda kamienna
-m - przeszkoda metalowa
-e - przeciwnik
+Gdzie:  
+w - przeszkoda drewniana  
+s - przeszkoda kamienna  
+m - przeszkoda metalowa  
+e - przeciwnik  
 g - podłoże
 
 W trakcie działania programu można zapisać zinterpretowany plik tekstowy do pliku w postaci binarnej.
 Na początku działania programu wczytywane są wcześniej zdobyte punkty na każdym z poziomów, a pod koniec programu są one zapisywane. Znów można podjąć decyzje zapisu/odczytu z pliku binarnego lub tekstowego, przy pomocy parametru metody.
 
 # Specyfikacja zewnętrzna
-Przydatne skróty klawiszowe dla użytkownika:
-R - restart aktualnego poziomu
-1-3 - wybór obiektu do rzucania
-M - menu map
+Przydatne skróty klawiszowe dla użytkownika:  
+R - restart aktualnego poziomu  
+1-3 - wybór obiektu do rzucania  
+M - menu map  
 Esc - wyjście z programu
 
 Po uruchomieniu programu użytkownikowi ukazuje się menu z wszystkimi dostępnymi mapami. Mapa jest dostępna do kliknięcia, jeżeli poprzednia mapa została pokonana.
@@ -85,7 +85,7 @@ Do wyboru są 3 typy obiektów do rzucania:
 
 ![cluster](https://user-images.githubusercontent.com/49723341/132681753-c7a0c614-baae-44e5-a539-f2fe5b084d81.png)
 
-3 Bombardujący - po wciśnięciu lewego przycisku myszy tworzy bombę (maksymalnie 3)
+3. Bombardujący - po wciśnięciu lewego przycisku myszy tworzy bombę (maksymalnie 3)
 
 ![bombarding](https://user-images.githubusercontent.com/49723341/132681770-a64ecf6d-28a2-48f9-94ec-ea4c81b54081.png)
 
@@ -96,7 +96,6 @@ Przyjmowanie obrażeń przez przedmioty jest zobrazowane w taki sposób:
 Po przegraniu lub wygraniu wyświetlają się odpowiednie okna, które pozwalają na powtórzenie poziomu lub przejście do następnego w przypadku wygranej.
 
 ![restart](https://user-images.githubusercontent.com/49723341/132681832-f7ed3e8a-569e-43c6-a8a1-21bac4068b6b.png)
-
 ![next](https://user-images.githubusercontent.com/49723341/132681837-5a0a8f1e-e1d5-422a-9981-6b76f3bc4b18.png)
 
 Ostatnie 2 poziomy odbywają się na księżycu o obniżonym przyspieszeniu grawitacyjnym.
@@ -107,170 +106,60 @@ Ostatnie 2 poziomy odbywają się na księżycu o obniżonym przyspieszeniu graw
 Program został zrealizowany zgodnie z paradygmatem strukturalnym. W programie rozdzielono interfejs (komunikację z użytkownikiem) od logiki aplikacji (symulacji fizyki).
 
 # Klasy
-Screen
+1. Screen
 Odpowiada za stworzenie okna, w którym wyświetlany będzie program, za komunikację z użytkownikiem, operacje na plikach i koordynacje stanów gry (poziom, wygrana przegrana, menu map).
 Zawiera w sobie obiekty klasy Button do stworzenia przycisków i wskaźnik na obiekt klasy Level.
-Istotne pola:
-window - reprezentuje okno, w którym przedstawiana jest gra
-event - odczytuje input użytkownika
-game_state - określa stan gry (poziom, wygrana przegrana, menu map)
-level_icon - tablica wskaźników na przycisk do wczytania danego poziomu
-level_design - tablica trójwymiarowa jest miejscem zapisywania z pliku i wczytywania designu poziomów
-active_level - wskaźnik na aktualny poziom
-scores - tablica z punktami dla każdego poziomu
-Istotne metody:
-loadChosenLevel - wczytuje poziom z level_design na wskaźnik active_level
-renderTrajectory - tworzy trajektorie lotu podczas celowania rzutem
-updateObjects - iteruje przez wszystkie obiekty, żeby zaktualizować ich pozycje na ekranie na podstawie ich oddziaływań z poziomem
-handleLevelEvents - pobiera informacje od użytkownika w trakcie trwania poziomu
-handleMapMenuEvents - pobiera informacje od użytkownika w trakcie bycia w menu map
-interpretLevelLayout - interpretuje informacje z pliku tekstowego lub binarnego o designie poziomu i zapisuje je w level_design.
-loadScore - wczytuje punkty poziomów z pliku tekstowego lub binarnego
-saveScore - zapisuje punkty poziomów do pliku tekstowego lub binarnego
-createWindow - tworzy okno gry i zawiera w sobie pętle trwającą do momentu zakończenia pracy programu, w której odbywają się najważniejsze części programu
 
-Button
+2. Button
 Odpowiada za stworzenie interaktywnego przycisku, który wykrywa pozycje kursora myszy na ekranie i potrafi poinformować o kliknięciu.
 Znajduje się w klasie Screen.
-Istotne pola:
-button_type - rodzaj przycisku (okrągły, prostokątny, oparty o teksturę)
-text - napis na przycisku
-allow_to_click - zmienna boolowska, określa czy przycisk można kliknąć
-size_x - szerokość przycisku
-size_y - wysokość przycisku
-radius - promień przycisku
-Istotne metody:
-isHovered - zwraca true jeżeli kursor myszy znajduje się na przycisku
-isClicked - zwraca true jeżeli przycisk został kliknięty, działa tylko jeżeli allow_to_click = true.
-setButtonPosition - ustawia pozycje przycisku i jego napisu
-drawTo - wyświetla przycisk na ekranie
 
-Level
+3. Level
 Odpowiada za tworzenie i przechowywanie w sobie wszystkich obiektów poziomu, których fizyka jest symulowana, za interakcje między tymi elementami, wykrywanie kolizji między nimi i niszczenie ich.
 Zawiera w sobie obiekty klasy SimulatedObject w tym: Obstacle, Ground, Enemy, Throwable i ich rodzaje. Zawiera w sobie pojedynczą instancję klasy ContactListener. Występuje w klasie Screen.
-Istotne pola:
-score - ilość punktów aktualnie zdobytych na poziomie
-throwable_number - stopień ulepszenia obiektów do rzucania
-level_number - liczba jednoznacznie identyfikująca poziom
-level_type - typ poziomu: normalny lub księżycowy
-world - wskaźnik na obiekt biblioteki Box2D, odpowiadający za symulację obiektów
-contact_listener_instance - obiekt biblioteki Box2D, odpowiadający za wykrywanie kolizji
-objects - wektor biblioteki STL zawierający wskaźniki obiektów SimulatedObject, w której znajdują się wszystkie obiekty poziomu
-active_throwable - aktualnie wybrany obiekt do rzucania
-throwables - tablica wskaźników wszystkich obiektów do rzucania
-Istotne metody:
-createWholeGround - tworzy podłoże na samym dole poziomu i na jego całej szerokości
-createGround - tworzy pojedynczy blok podłoża i umieszcza pointer stworzonego obiektu w wektorze objects
-createObstacle -  tworzy pojedynczy blok przeszkody i umieszcza pointer stworzonego obiektu w wektorze objects
-createEnemy -  tworzy pojedynczy blok przeciwnika i umieszcza pointer stworzonego obiektu w wektorze objects
-createThrowables - tworzy obiekty gotowe do rzutu gdy zostaną aktywowane
-makeLevel - pozwala stworzyć obiekty w dowolnych rozmiarach i dowolnych pozycjach omijając tworzenie poziomu z interpretacji tablicy level_design 
-destroyFlaggedObjects - niszczy obiekt, którego HP jest mniejsze lub równe 0 przyznając punkty równe jego maksymalnego HP * 10
-isLevelWon - iteruje poprzez wszystkie obiekty ze złożonością obliczeniową O(n) i sprawdza, czy istnieje obiekt typu Enemy
-isLevelLost - sprawdza czy wszystkie obiekty do rzucania zostały użyte i skończyły się poruszać
-addPointsForUnusedThrows - przyznaje punkty za każdy z niezużytych obiektów do rzucania
 
-ContactListener
+4. ContactListener
 Odpowiada za wykrywanie kolizji i identyfikacji, które ciała w nich uczestniczą. Klasa ta zwraca informacje o kolizji tylko wtedy gdy 2 ciała się stykają, dzięki temu nie ma konieczności iterowania przez każdy obiekt i sprawdzania, czy jego granice stykają się z granicami każdego innego obiektu na poziomie. Miałoby to złożoność obliczeniową O(n2).
 Dziedziczy z b2ContactListener - klasy biblioteki Box2D. Jej instancja jest obecna w klasie Level.
-Istotne pola:
-object_a - obiekt A, który wchodzi w kolizje
-object_b - obiekt B, który wchodzi w kolizje
-damage - ilość obrażeń przyjmowanych przez obiekt podczas kolizji
-Istotne metody:
-BeginContact - metoda wywoływana w momencie wykrycia kolizji
-calculateContactDamage - oblicza obrażanie zadane obiektowi będące sumą prędkości liniowej obu ciał na płaszczyźnie x i y
-applyDamage - odejmuje HP przeszkodzie lub przeciwnikowi na podstawie wcześniej obliczonych obrażeń
-checkIfClusterContact - sprawdza czy obiekt, który uległ kolizji jest typu Cluster
 
-SimulatedObject
-Odpowiada za połączenie dwóch bibliotek zewnętrznych: SFML (grafika) i Box2D (fizyka). Wykonuje odpowiednie konwersje jednostek (stopnie-radiany i piksele-metry) z użyciem przestrzeni nazw Converter zawierającej 
-funkcje: 
-pixelsToMeters
-metersToPixels
-degToRad
-radToDeg
-oraz stałe: 
-PIXELS_PER_METER = 32.0
-PI = 3.14159265358979323846
+5. SimulatedObject
+Odpowiada za połączenie dwóch bibliotek zewnętrznych: SFML (grafika) i Box2D (fizyka). Wykonuje odpowiednie konwersje jednostek (stopnie-radiany i piksele-metry) z użyciem przestrzeni nazw Converter.
 Konwersja jest konieczna, żeby grafiki obiektów pokazywały się w tym miejscu na ekranie, na który wskazują obliczenia Box2D.
 Jest to klasa abstrakcyjna z czysto wirtualną metodą createObject, z której dziedziczą wszystkie symulowane obiekty występujące na poziomie. Jej klasami potomnymi są Obstacle, Ground, Enemy i Throwable. Kolekcja wszystkich symulowanych obiektów znajduje się w klasie Level w jej wektorze wskaźników na SimulatedObject.
-Istotne pola:
-x - położenie obiektu na płaszczyźnie x
-y - położenie obiektu na płaszczyźnie y
-hp - HP obiektu
-block_size_x - szerokość bloku
-block_size_y - wysokość bloku
-radius - promień obiektu
-graphics - grafika obiektu
-physics - fizyczne właściwości obiektu
-object_type - typ obiektu: przeszkoda, podłoże, przeciwnik, obiekt do rzucania
-Istotne metody:
-createObject - metoda czysto wirtualna
-initializePosition - ustawia świat, w którym znajduje się obiekt i jego położenie
-updatePosition - ustawia odpowiednie położenie i rotację grafiki obiektu, na podstawie jego interakcji z innymi obiektami w świecie
-deleteObject - usuwa obiekt ze świata
-setAsDamaged - ustawia teksturę obiektu na wersje poniszczoną gdy jego HP spadnie poniżej 50%
 
-Obstacle
+6. Obstacle
 Reprezentuje przeszkode - dynamiczny (możliwy do poruszenia) obiekt, który może ulec zniszczeniu. Występuje w 3 typach: drewno, kamień, metal. Typ przeszkody wpływa na maksymalne HP, teksturę i gęstość obiektu.
 Dziedziczy z klasy SimulatedObject.
-Istotne pola:
-obstacle_type - typ przeszkody
-Istotne metody:
-createObject - tworzy przeszkodę, która jest gotowa do symulacji fizyki (określa jej parametry po stworzeniu: pozycje, rozmiar, gęstość i tarcie)
-setType - ustawia typ przeszkody
 
-Ground
+7. Ground
 Reprezentuje podłoże - statyczny (niemożliwy do poruszenia) obiekt, który nie może ulec zniszczeniu. Występuje w 2 typach: zwykły i księżycowy. Typ podłoża zależy od rodzaju poziomu.
 Dziedziczy z klasy SimulatedObject.
-Istotne metody:
-createObject - tworzy podłoże, które jest gotowe do symulacji fizyki (określa jego parametry po stworzeniu: pozycje, rozmiar i gęstość)
 Zawiera dwa konstruktory: jeden oparty o teksture - w którym wybierany jest typ podłoża, drugi oparty o kolor (tworzy jednolity blok)
 
-Enemy
+8. Enemy
 Reprezentuje przeciwnika - dynamiczny (możliwy do poruszenia) obiekt, który może ulec zniszczeniu. Wszystkie obiekty tego typu muszą zostać zniszczone, żeby obiekt typu Level mógł podjąć decyzje o zwycięstwie.
 Dziedziczy z klasy SimulatedObject.
-Istotne metody:
-createObject - tworzy przeciwnika, który jest gotowy do symulacji fizyki (określa jego parametry po stworzeniu: pozycje, rozmiar, gęstość i tarcie)
 
-Throwable
+9. Throwable
 Do bazy, jaką stanowi klasa SimulatedObject klasa Throwable wprowadza swoje metody i pola, które umożliwią celowanie i wystrzelenie obiektu oraz sprawdzanie, z czy obiekt wciąż się porusza. Zawiera 3 stany:
-Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
-Celujący (Aiming) - wyświetlana jest trajektoria lotu
-Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
+1. Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
+2. Celujący (Aiming) - wyświetlana jest trajektoria lotu
+3. Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
 Stan obiektu (użyty) i stwierdzenie nieporuszania się umożliwia poziomowi podjęcie decyzji o przegranej.
 Dziedziczy z klasy SimulatedObject.
-Istotne pola:
-state - stan obiektu do rzucania
-linear_velocity - prędkość liniowa
-max_velocity - maksymalna prędkość liniowa przy wystrzeleniu
-thr_start_x - pozycja startowa na płaszczyźnie x
-thr_start_y - pozycja startowa na płaszczyźnie y
-is_moving - określa czy obiekt jest wciąż w ruchu
-Istotne metody:
-createObject - tworzy obiekt, który jest gotowy do symulacji fizyki (określa jego parametry po stworzeniu: pozycje, rozmiar, gęstość, tarcie, sprężystość, tłumienie kątowe)
-getTrajectoryX i getTrajectoryY - zwraca przyszłą lokację obiektu na podstawie startowej prędkości po wystrzeleniu i grawitacji
-launch - tworzy obiekt, który został rzucony z prędkością liniową określoną pozycją myszy
-maximumVelocityLimitation - ustala jaka jest maksymalna prędkość liniowa przy wyrzuceniu obiektu
-checkIfMoving - ustawia obiekt jako nieruszający się jeżeli suma jego prędkości na płaszczyźnie x i y nie przekracza określonej wartości
 
-DefaultThrowable
+10. DefaultThrowable
 Nie zawiera żadnych specjalnych efektów. Dziedziczy z klasy Throwable.
 W konstruktorze obiektu klasy DefaultThrowable ustalony zostaje typ obiektu, jego lokacja, tekstura i rozmiar.
 
-Cluster
+11. Cluster
 Tworzy 8 odłamków po kolizji obiektu. Stworzone odłamki są wstrzeliwane z prędkością liniową w 4 różnych kierunkach.
 Dziedziczy z klasy Throwable.
-Istotne pola:
-collided - określa czy obiekt brał już udział w kolizji (tylko pierwsza kolizja powinna stworzyć odłamki)
 W konstruktorze obiektu klasy Cluster ustalony zostaje typ obiektu, jego lokacja, tekstura, rozmiar oraz to czy obiekt nie jest odłamkiem. Jest to konieczne, ponieważ odłamki nie mogą tworzyć kolejnych odłamków.
 
-Bombarding
+12. Bombarding
 Tworzy maksymalnie 3 bomby od obiektu typu Bombarding. Wystrzelenie bomby jest kontrolowane przez użytkownika lewym przyciskiem myszy w trakcie gdy obiekt typu Bombarding został użyty, ale jeszcze nie skończył się poruszać. Bomba jest wystrzeliwana z prędkością liniową skierowaną w dół.
 Dziedziczy z klasy Throwable.
-Istotne pola:
-adds_used - ilość stworzonych dodatkowych obiektów bombardujących (określa czy można stworzyć kolejną bombę z tego obiektu)
 
 # Szczegółowy opis klas i metod
 Szczegółowy opis klas i metod zawarty w pliku "Dokumentacja - AngryBlocks.pdf".
@@ -310,6 +199,7 @@ W tej pętli znajduje się również kolejna pętla sprawdzająca, czy wczytywan
 
 # Testowanie i uruchamianie
 Program został przetestowany pod kątek ilości obiektów, które może stworzyć i renderować przy rozsądnych klatkach na sekundę - program działa przy grywalnych klatkach na sekundę do około 500 obiektów na poziomie. Przy większych ilościach stworzonych obiektów program działa powoli aż do momentu zniszczenia się obiektów przez kolizję do ilości około 500 obiektów. Uruchomienie poziomu z 10000 obiektami trwa 16 sekund. Przy 40000 obiektach uzyskuje się błąd:
+
 ![testing1](https://user-images.githubusercontent.com/49723341/132682511-77c95d5a-a2f5-4ace-a913-e32031c64d0f.png)
 
 Przy 50000 obiektach występuje inny błąd:
