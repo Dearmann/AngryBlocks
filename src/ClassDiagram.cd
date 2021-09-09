@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Button" Collapsed="true">
+    <Position X="3.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAEAEgCAAQIDgAAAAACQBAQAAAAAQIBgAAKAAAIAg=</HashCode>
+      <FileName>button.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ContactListener" Collapsed="true">
+    <Position X="8.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAgIAAAAAAQAAAAAAAEAAAAAhAAAAAAAA=</HashCode>
+      <FileName>contact_listener.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Level" Collapsed="true">
+    <Position X="6" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACKNAnAEAAAAgAJCEAIAKAGAQBAkACBHIBhRAhAKAA=</HashCode>
+      <FileName>level.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="contact_listener_instance" />
+      <Field Name="objects_" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Screen" Collapsed="true">
+    <Position X="6" Y="0.75" Width="1.5" />
+    <Members>
+      <Field Name="level_icon" Hidden="true" />
+      <Field Name="lose_restart" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AEYCGAwAAACACDALFBAOIMAAQoIDAQoIEAkCACJQCAA=</HashCode>
+      <FileName>screen.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="active_level" />
+      <Field Name="map_button" />
+      <Field Name="level_icon" />
+      <Field Name="lose_restart" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="SimulatedObject" Collapsed="true">
+    <Position X="6" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACKAEAAACQAAAgAAAAAAAAAAQBAAAigAAABgAQAAAAA=</HashCode>
+      <FileName>simulated_object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Obstacle" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAgAIAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>simulated_object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ground" Collapsed="true">
+    <Position X="7.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>simulated_object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy" Collapsed="true">
+    <Position X="9.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>simulated_object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Throwable" Collapsed="true">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEBACAAQAAIAAkAAAAQABAAAAAAAAAAEAIAABAAAABA=</HashCode>
+      <FileName>throwable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DefaultThrowable" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>throwable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cluster" Collapsed="true">
+    <Position X="5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>throwable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bombarding" Collapsed="true">
+    <Position X="7.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>throwable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
