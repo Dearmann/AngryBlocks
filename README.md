@@ -96,6 +96,7 @@ Przyjmowanie obrażeń przez przedmioty jest zobrazowane w taki sposób:
 Po przegraniu lub wygraniu wyświetlają się odpowiednie okna, które pozwalają na powtórzenie poziomu lub przejście do następnego w przypadku wygranej.
 
 ![restart](https://user-images.githubusercontent.com/49723341/132681832-f7ed3e8a-569e-43c6-a8a1-21bac4068b6b.png)
+
 ![next](https://user-images.githubusercontent.com/49723341/132681837-5a0a8f1e-e1d5-422a-9981-6b76f3bc4b18.png)
 
 Ostatnie 2 poziomy odbywają się na księżycu o obniżonym przyspieszeniu grawitacyjnym.
