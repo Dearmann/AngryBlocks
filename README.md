@@ -77,15 +77,15 @@ Gdy użytkownik zdecydował się na jeden z typów obiektu do rzucania, może ro
 Puszczenie przycisku powoduje wyrzut obiektu.
 
 Do wyboru są 3 typy obiektów do rzucania:
-1. Zwyczajny - brak specjalnych efektów
+1. `Zwyczajny` - brak specjalnych efektów
 
 ![normal](https://user-images.githubusercontent.com/49723341/132681744-028f39c3-0dd0-46b9-9f26-509ec9611870.png)
 
-2. Odłamkowy - po kolizji tworzy 8 odłamków
+2. `Odłamkowy` - po kolizji tworzy 8 odłamków
 
 ![cluster](https://user-images.githubusercontent.com/49723341/132681753-c7a0c614-baae-44e5-a539-f2fe5b084d81.png)
 
-3. Bombardujący - po wciśnięciu lewego przycisku myszy tworzy bombę (maksymalnie 3)
+3. `Bombardujący` - po wciśnięciu lewego przycisku myszy tworzy bombę (maksymalnie 3)
 
 ![bombarding](https://user-images.githubusercontent.com/49723341/132681770-a64ecf6d-28a2-48f9-94ec-ea4c81b54081.png)
 
@@ -111,41 +111,41 @@ Dziedziczenie oznaczone jest białą strzałką a powiązania zieloną.
 ![classes](https://user-images.githubusercontent.com/49723341/132682397-1be03e40-ee66-4148-9421-2397a4beb087.png)
 
 # Klasy
-1. Screen
+1. Screen  
 Odpowiada za stworzenie okna, w którym wyświetlany będzie program, za komunikację z użytkownikiem, operacje na plikach i koordynacje stanów gry (poziom, wygrana przegrana, menu map).
 Zawiera w sobie obiekty klasy Button do stworzenia przycisków i wskaźnik na obiekt klasy Level.
 
-2. Button
+2. Button  
 Odpowiada za stworzenie interaktywnego przycisku, który wykrywa pozycje kursora myszy na ekranie i potrafi poinformować o kliknięciu.
 Znajduje się w klasie Screen.
 
-3. Level
+3. Level  
 Odpowiada za tworzenie i przechowywanie w sobie wszystkich obiektów poziomu, których fizyka jest symulowana, za interakcje między tymi elementami, wykrywanie kolizji między nimi i niszczenie ich.
 Zawiera w sobie obiekty klasy SimulatedObject w tym: Obstacle, Ground, Enemy, Throwable i ich rodzaje. Zawiera w sobie pojedynczą instancję klasy ContactListener. Występuje w klasie Screen.
 
-4. ContactListener
+4. ContactListener  
 Odpowiada za wykrywanie kolizji i identyfikacji, które ciała w nich uczestniczą. Klasa ta zwraca informacje o kolizji tylko wtedy gdy 2 ciała się stykają, dzięki temu nie ma konieczności iterowania przez każdy obiekt i sprawdzania, czy jego granice stykają się z granicami każdego innego obiektu na poziomie. Miałoby to złożoność obliczeniową O(n2).
 Dziedziczy z b2ContactListener - klasy biblioteki Box2D. Jej instancja jest obecna w klasie Level.
 
-5. SimulatedObject
+5. SimulatedObject  
 Odpowiada za połączenie dwóch bibliotek zewnętrznych: SFML (grafika) i Box2D (fizyka). Wykonuje odpowiednie konwersje jednostek (stopnie-radiany i piksele-metry) z użyciem przestrzeni nazw Converter.
 Konwersja jest konieczna, żeby grafiki obiektów pokazywały się w tym miejscu na ekranie, na który wskazują obliczenia Box2D.
 Jest to klasa abstrakcyjna z czysto wirtualną metodą createObject, z której dziedziczą wszystkie symulowane obiekty występujące na poziomie. Jej klasami potomnymi są Obstacle, Ground, Enemy i Throwable. Kolekcja wszystkich symulowanych obiektów znajduje się w klasie Level w jej wektorze wskaźników na SimulatedObject.
 
-6. Obstacle
+6. Obstacle  
 Reprezentuje przeszkode - dynamiczny (możliwy do poruszenia) obiekt, który może ulec zniszczeniu. Występuje w 3 typach: drewno, kamień, metal. Typ przeszkody wpływa na maksymalne HP, teksturę i gęstość obiektu.
 Dziedziczy z klasy SimulatedObject.
 
-7. Ground
+7. Ground  
 Reprezentuje podłoże - statyczny (niemożliwy do poruszenia) obiekt, który nie może ulec zniszczeniu. Występuje w 2 typach: zwykły i księżycowy. Typ podłoża zależy od rodzaju poziomu.
 Dziedziczy z klasy SimulatedObject.
 Zawiera dwa konstruktory: jeden oparty o teksture - w którym wybierany jest typ podłoża, drugi oparty o kolor (tworzy jednolity blok)
 
-8. Enemy
+8. Enemy  
 Reprezentuje przeciwnika - dynamiczny (możliwy do poruszenia) obiekt, który może ulec zniszczeniu. Wszystkie obiekty tego typu muszą zostać zniszczone, żeby obiekt typu Level mógł podjąć decyzje o zwycięstwie.
 Dziedziczy z klasy SimulatedObject.
 
-9. Throwable
+9. Throwable  
 Do bazy, jaką stanowi klasa SimulatedObject klasa Throwable wprowadza swoje metody i pola, które umożliwią celowanie i wystrzelenie obiektu oraz sprawdzanie, z czy obiekt wciąż się porusza. Zawiera 3 stany:
 - Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
 - Celujący (Aiming) - wyświetlana jest trajektoria lotu
@@ -153,16 +153,16 @@ Do bazy, jaką stanowi klasa SimulatedObject klasa Throwable wprowadza swoje met
 Stan obiektu (użyty) i stwierdzenie nieporuszania się umożliwia poziomowi podjęcie decyzji o przegranej.
 Dziedziczy z klasy SimulatedObject.
 
-10. DefaultThrowable
+10. DefaultThrowable  
 Nie zawiera żadnych specjalnych efektów. Dziedziczy z klasy Throwable.
 W konstruktorze obiektu klasy DefaultThrowable ustalony zostaje typ obiektu, jego lokacja, tekstura i rozmiar.
 
-11. Cluster
+11. Cluster  
 Tworzy 8 odłamków po kolizji obiektu. Stworzone odłamki są wstrzeliwane z prędkością liniową w 4 różnych kierunkach.
 Dziedziczy z klasy Throwable.
 W konstruktorze obiektu klasy Cluster ustalony zostaje typ obiektu, jego lokacja, tekstura, rozmiar oraz to czy obiekt nie jest odłamkiem. Jest to konieczne, ponieważ odłamki nie mogą tworzyć kolejnych odłamków.
 
-12. Bombarding
+12. Bombarding  
 Tworzy maksymalnie 3 bomby od obiektu typu Bombarding. Wystrzelenie bomby jest kontrolowane przez użytkownika lewym przyciskiem myszy w trakcie gdy obiekt typu Bombarding został użyty, ale jeszcze nie skończył się poruszać. Bomba jest wystrzeliwana z prędkością liniową skierowaną w dół.
 Dziedziczy z klasy Throwable.
 
