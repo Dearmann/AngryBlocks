@@ -142,9 +142,9 @@ Dziedziczy z klasy SimulatedObject.
 
 9. Throwable
 Do bazy, jaką stanowi klasa SimulatedObject klasa Throwable wprowadza swoje metody i pola, które umożliwią celowanie i wystrzelenie obiektu oraz sprawdzanie, z czy obiekt wciąż się porusza. Zawiera 3 stany:
-1. Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
-2. Celujący (Aiming) - wyświetlana jest trajektoria lotu
-3. Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
+- Oczekujący (Idle) - wyświetlana jest grafika obiektu i oczekuje na kliknięcie, aby wyświetlić trajektorię
+- Celujący (Aiming) - wyświetlana jest trajektoria lotu
+- Użyty (Used) - obiekt został użyty i jego fizyka jest symulowana
 Stan obiektu (użyty) i stwierdzenie nieporuszania się umożliwia poziomowi podjęcie decyzji o przegranej.
 Dziedziczy z klasy SimulatedObject.
 
